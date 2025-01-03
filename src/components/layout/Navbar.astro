@@ -1,0 +1,168 @@
+---
+const navItems = [
+  { label: 'Inicio', path: '/' },
+  { label: 'Experiencia', path: '/experience' },
+  { label: 'Proyectos', path: '/projects' },
+  { label: 'Blog', path: '/blog' },
+  { label: 'Contacto', path: '/contact' }
+];
+---
+
+<nav id="navbar">
+  <div class="nav-container">
+    <div class="nav-content">
+      <div class="logo">
+        <span>GJ</span>
+      </div>
+      
+      <div class="desktop-menu">
+        <div class="menu-items">
+          {navItems.map((item) => (
+            <a href={item.path}>
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <button id="mobileButton" aria-label="Menu">
+        <svg viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobileMenu">
+    <div class="mobile-menu-items">
+      {navItems.map(item => (
+        <a href={item.path}>
+          {item.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<style>
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transition: all 0.3s;
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+  }
+
+  .logo span {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .desktop-menu {
+    display: none;
+  }
+
+  .menu-items {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .menu-items a {
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .menu-items a:hover {
+    color: #2563eb;
+  }
+
+  #mobileButton {
+    display: block;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+  }
+
+  #mobileButton:hover {
+    background-color: rgba(0,0,0,0.05);
+  }
+
+  #mobileButton svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: none;
+  }
+
+  #mobileMenu {
+    display: none;
+    background-color: rgba(255,255,255,0.8);
+    backdrop-filter: blur(8px);
+  }
+
+  .mobile-menu-items {
+    padding: 0.5rem;
+  }
+
+  .mobile-menu-items a {
+    display: block;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .mobile-menu-items a:hover {
+    color: #2563eb;
+  }
+
+  @media (min-width: 768px) {
+    .desktop-menu {
+      display: block;
+    }
+
+    #mobileButton {
+      display: none;
+    }
+  }
+
+  nav.scrolled {
+    background-color: rgba(255,255,255,0.8);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+  }
+</style>
+
+<script>
+  const nav = document.querySelector('#navbar');
+  const mobileButton = document.querySelector('#mobileButton');
+  const mobileMenu = document.querySelector('#mobileMenu');
+
+  window.addEventListener('scroll', () => {
+    if (nav) {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }
+  });
+
+  mobileButton?.addEventListener('click', () => {
+    if (mobileMenu) {
+      (mobileMenu as HTMLElement).style.display = (mobileMenu as HTMLElement).style.display === 'block' ? 'none' : 'block';
+    }
+  });
+</script>

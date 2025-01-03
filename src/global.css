@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  --color-primary: #f5f5f5;
+  --color-secondary: #ffffff;
+  --bg-pattern: #e5e5f7;
+  --bg-dots: #444cf7;
+}
+
+body {
+  font-family: 'Space Mono', monospace;
+  background-color: var(--bg-pattern);
+  opacity: 0.8;
+  background-image: radial-gradient(var(--bg-dots) 0.5px, var(--bg-pattern) 0.5px);
+  background-size: 10px 10px;
+}
